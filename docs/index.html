@@ -1,19 +1,310 @@
-<!doctype html>
-<title>Dilabestratingen - Website in onderhoud</title>
-<style>
-  body { text-align: center; padding: 150px; }
-  h1 { font-size: 50px; }
-  body { font: 20px Helvetica, sans-serif; color: #333; }
-  article { display: block; text-align: left; width: 650px; margin: 0 auto; }
-  a { color: #dc8100; text-decoration: none; }
-  a:hover { color: #333; text-decoration: none; }
-</style>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dilabestratingen | Vakmanschap in Bestrating</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<article>
-    <h1>We zijn snel online</h1>
-    <div>
-        <p>We zijn druk bezig met opbouwen van een nieuwe website. 🚜</p>
-        <p>Bij vragen email naar: info@dilabestratingen.nl</p>
-        <p>&mdash; Dilabestratingen</p>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        header {
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .intro {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .intro h2 {
+            color: #ff6b35;
+            margin-bottom: 1rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .photo-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255,255,255,0.1) 50%,
+                transparent 70%
+            );
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .photo-card .content {
+            padding: 1.5rem;
+        }
+
+        .photo-card h3 {
+            color: #ff6b35;
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .photo-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .services {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .services h2 {
+            text-align: center;
+            color: #ff6b35;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-item {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: scale(1.05);
+        }
+
+        .service-item h3 {
+            color: #ff6b35;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact {
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact h2 {
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .contact p {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 1rem 2rem;
+            background: white;
+            color: #ff6b35;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🔨 Dilabestratingen</h1>
+        <p>Uw specialist in stratenwerk en tuinbestrating</p>
+    </header>
+
+    <div class="container">
+        <div class="intro">
+            <h2>Welkom bij Dilabestratingen</h2>
+            <p>Met jarenlange ervaring en vakmanschap leveren wij hoogwaardig stratenwerk voor particulieren en bedrijven. Van moderne opritten tot klassieke tuinpaden - elk project wordt met precisie en zorg uitgevoerd.</p>
+        </div>
+
+        <h2 style="text-align: center; color: #ff6b35; margin-bottom: 2rem;">Ons Werk</h2>
+        <div class="gallery">
+            <div class="photo-card">
+                <div class="photo-placeholder">
+                    <img src="img/parkeerplaats.jpeg" alt="Project 1" style="width: 100%; height: 250px; object-fit: cover;">
+                </div>
+                <div class="content">
+                    <h3>Parkeerplaatsen</h3>
+                    <p>Duurzame en stijlvolle parkeerplaatsen aangelegd met hoogwaardige materialen.</p>
+                </div>
+            </div>
+
+            <div class="photo-card">
+                <div class="photo-placeholder">
+                    <img src="img/gemeentewerk.jpeg" alt="Project 2" style="width: 100%; height: 250px; object-fit: cover;">
+                </div>
+                <div class="content">
+                    <h3>Gemeentewerk</h3>
+                    <p>Sfeervolle bestrating die perfect aansluit bij openbare ruimte.</p>
+                </div>
+            </div>
+
+            <div class="photo-card">
+                <div class="photo-placeholder">
+                    <img src="img/terrassen.jpeg" alt="Project 3" style="width: 100%; height: 250px; object-fit: cover;">
+                </div>
+                <div class="content">
+                    <h3>Terrassen</h3>
+                    <p>Luxe terrassen waar u jarenlang van kunt genieten. Waterdoorlatend en onderhoudsarm.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="services">
+            <h2>Onze Diensten</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <h3>🏠 Opritten</h3>
+                    <p>Aanleg en renovatie van opritten in diverse materialen</p>
+                </div>
+                <div class="service-item">
+                    <h3>🌳 Tuinbestrating</h3>
+                    <p>Paden, terrassen en plateaus voor uw tuin</p>
+                </div>
+                <div class="service-item">
+                    <h3>🏢 Bedrijfsterreinen</h3>
+                    <p>Professionele bestrating voor bedrijven</p>
+                </div>
+                <div class="service-item">
+                    <h3>🔧 Onderhoud</h3>
+                    <p>Reiniging, voegen en reparaties</p>
+                </div>
+                <div class="service-item">
+                    <h3>💎 Sierbestrating</h3>
+                    <p>Decoratieve patronen en ontwerpen</p>
+                </div>
+                <div class="service-item">
+                    <h3>🚜 Grondwerk</h3>
+                    <p>Volledige voorbereiding en afwerking</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact">
+            <h2>Neem Contact Op</h2>
+            <p>📞 Telefoon: 06 - 12 34 56 78</p>
+            <p>✉️ Email: info@dilabestratingen.nl</p>
+            <p>📍 Werkgebied: Gelderland</p>
+            <a href="mailto:info@dilabestratingen.nl" class="btn">Vraag Offerte Aan</a>
+        </div>
     </div>
-</article>
+
+    <footer>
+        <p>&copy; 2026 Dilabestratingen. Alle rechten voorbehouden.</p>
+        <p>Vakmanschap • Kwaliteit • Betrouwbaarheid</p>
+    </footer>
+</body>
+</html>
